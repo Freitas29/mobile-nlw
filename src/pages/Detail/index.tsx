@@ -5,7 +5,21 @@ import { FontAwesome as Icon, Feather } from '@expo/vector-icons'
 
 import Back from '../../components/GoBack'
 import { RectButton } from 'react-native-gesture-handler'
+import { useRoute } from '@react-navigation/native'
+
+
+interface Params {
+  point_id: number
+}
+
 const Detail = () => {
+
+  const route = useRoute()
+
+  const routeParams = route.params as Params
+
+  route.params
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, TouchableOpacity, Text, ScrollView, Image, SafeAreaView, Alert } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import MapView, { Marker } from 'react-native-maps'
 import { SvgUri } from 'react-native-svg'
 import Back from '../../components/GoBack'
@@ -16,7 +16,7 @@ interface Item {
 interface Point {
   id: number
   image: string
-  nome: string
+  name: string
   latitude: number
   longitude: number
 }
@@ -28,8 +28,8 @@ const Point = () => {
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0])
   const [points, setPoints] = useState<Point[]>()
 
-  function handleNavigateToDetail() {
-    navigation.navigate('Detail')
+  function handleNavigateToDetail(id: number) {
+    navigation.navigate('Detail', { pointId: id })
   }
 
   function handleSelectItem(id: number) {
@@ -67,22 +67,33 @@ const Point = () => {
         latitude,
         longitude
       ])
+
     }
 
     loadPosition()
+
+    return () => {
+
+    }
   }, [])
 
   useEffect(() => {
+    const myAbortController = new AbortController();
+
     api.get('/points', {
       params: {
         city: "São paulo",
         uf: "SP",
-        items: [2]
+        items: [2],
+        signal: myAbortController.signal,
       }
     }).then(response => {
-      console.log(response.data)
       setPoints(response.data)
     })
+
+    return () => {
+      myAbortController.abort(); 
+    }
   }, [])
 
   return (
@@ -108,7 +119,7 @@ const Point = () => {
                 <Marker
                   key={String(point.id)}
                   style={styles.mapMarker}
-                  onPress={handleNavigateToDetail}
+                  onPress={ () => handleNavigateToDetail(point.id)}
                   coordinate={{
                     latitude: point.latitude,
                     longitude: point.longitude,
