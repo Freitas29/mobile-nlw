@@ -1,3 +1,16 @@
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+const Detail = () => {
+  return (
+    <>
+      <View />
+    </>
+  )
+}
+
+export default Detail
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

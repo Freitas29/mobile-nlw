@@ -1,8 +1,22 @@
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+
+const Point = () => {
+  return (
+    <>
+      <View />
+    </>
+  )
+}
+
+
+export default Point
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 32,
-    paddingTop: 20 + Constants.statusBarHeight,
+    
   },
 
   title: {
@@ -33,7 +47,7 @@ const styles = StyleSheet.create({
 
   mapMarker: {
     width: 90,
-    height: 80, 
+    height: 80,
   },
 
   mapMarkerContainer: {
