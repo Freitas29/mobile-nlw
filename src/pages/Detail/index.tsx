@@ -1,15 +1,39 @@
 import React from 'react'
-import { StyleSheet, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Image, Text, SafeAreaView } from 'react-native'
 import Constants from 'expo-constants'
+import { FontAwesome as Icon, Feather } from '@expo/vector-icons'
+
 import Back from '../../components/GoBack'
+import { RectButton } from 'react-native-gesture-handler'
 const Detail = () => {
   return (
-    <>
+    <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <Back />
-        
+        <Image style={styles.pointImage} source={{ uri: "https://images.unsplash.com/photo-1514792368985-f80e9d482a02?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" }} />
+        <Text style={styles.pointName}>Mercadão do josé</Text>
+
+        <Text style={styles.pointItems}>Lampâdas, Óleo de cozinha</Text>
+
+        <View style={styles.address}>
+          <Text style={styles.addressTitle}>Endereço</Text>
+          <Text style={styles.addressContent}>São Paulo, SP</Text>
+
+        </View>
       </View>
-    </>
+
+      <View style={styles.footer}>
+        <RectButton style={styles.button} onPress={() => {}}>
+            <Icon name="whatsapp" size={20} color="#fff" />
+            <Text style={styles.buttonText}>Whatsapp</Text>
+        </RectButton>
+
+        <RectButton style={styles.button} onPress={() => {}}>
+            <Feather name="mail" size={20} color="#fff" />
+            <Text style={styles.buttonText}>E-Mail</Text>
+        </RectButton>
+      </View>
+    </SafeAreaView>
   )
 }
 
