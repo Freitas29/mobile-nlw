@@ -1,10 +1,14 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-
+import { StyleSheet, View, TouchableOpacity } from 'react-native'
+import Constants from 'expo-constants'
+import Back from '../../components/GoBack'
 const Detail = () => {
   return (
     <>
-      <View />
+      <View style={styles.container}>
+        <Back />
+        
+      </View>
     </>
   )
 }
@@ -15,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 32,
-    paddingTop: 20,
+    paddingTop: 20 + Constants.statusBarHeight,
   },
 
   pointImage: {
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
   address: {
     marginTop: 32,
   },
-  
+
   addressTitle: {
     color: '#322153',
     fontFamily: 'Roboto_500Medium',
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  
+
   button: {
     width: '48%',
     backgroundColor: '#34CB79',

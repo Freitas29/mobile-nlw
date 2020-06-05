@@ -5,13 +5,10 @@ import { Feather as Icon } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import MapView, { Marker } from 'react-native-maps'
 import { SvgUri } from 'react-native-svg'
+import Back from '../../components/GoBack'
 
 const Point = () => {
   const navigation = useNavigation()
-
-  function handleNavigateBack() {
-    navigation.goBack()
-  }
 
   function handleNavigateToDetail(){
     navigation.navigate('Detail')
@@ -20,9 +17,7 @@ const Point = () => {
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={20} color="#34cb79" />
-        </TouchableOpacity>
+        <Back />
 
         <Text style={styles.title} >Bem vindo.</Text>
         <Text style={styles.description}>Encontre no mapa um ponto de coleta.</Text>
