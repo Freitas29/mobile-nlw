@@ -20,8 +20,17 @@ interface Point {
   latitude: number
   longitude: number
 }
+
+interface Params{
+  uf: string,
+  city: string
+}
+
 const Point = () => {
   const navigation = useNavigation()
+  const route = useRoute()
+
+  const routeParams = route.params as Params
 
   const [items, setItems] = useState<Item[]>([])
   const [selectedItems, setSelectedItem] = useState<number[]>([])
@@ -86,9 +95,9 @@ const Point = () => {
 
     api.get('/points', {
       params: {
-        city: "São paulo",
-        uf: "SP",
-        items: [2],
+        city: routeParams.city,
+        uf: routeParams.uf,
+        items: selectedItems,
         signal: myAbortController.signal,
       }
     }).then(response => {
@@ -98,7 +107,7 @@ const Point = () => {
     return () => {
       myAbortController.abort(); 
     }
-  }, [])
+  }, [selectedItems])
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
