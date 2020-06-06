@@ -51,8 +51,10 @@ const Point = () => {
   }, [])
 
   useEffect(() => {
+    let mounted = true;
     async function loadPosition() {
       const { status } = await Location.requestPermissionsAsync()
+      
 
       if (status !== 'granted') {
         Alert.alert('Oops..', 'Precisamos de sua permissão para obter a localização')
@@ -70,10 +72,12 @@ const Point = () => {
 
     }
 
-    loadPosition()
+    if(mounted){
+      loadPosition()
+    }
 
     return () => {
-
+      mounted = false
     }
   }, [])
 
